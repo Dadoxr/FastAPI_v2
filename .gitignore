@@ -18,7 +18,7 @@ lib/
 lib64/
 parts/
 sdist/
-var/
+
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
@@ -102,6 +102,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.dev
 .venv
 env/
 venv/
@@ -130,9 +131,6 @@ dmypy.json
 # FastAPI
 *.db
 
-# Alembic
-alembic.ini
-
 # Poetry
 /poetry.lock
-n
+
