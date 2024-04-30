@@ -6,6 +6,7 @@ Stack: FastAPI, SQLAlchemy + Asyncpg, Alembic, strawberry-graphql
 ```python
 mv var/.env.dev.sample var/.env.dev
 docker compose -f docker-compose-local.yml up -d
+poetry shell
 alembic upgrade head
 python3 main.py
 ```

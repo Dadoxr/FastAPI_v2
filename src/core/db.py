@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import async_scoped_session
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.core.settings import settings
+from src.core import settings
 
 
 class DB:
@@ -39,4 +39,4 @@ class DB:
             await session.remove()
 
 
-db = DB(url=settings.db_url, echo=settings.db_echo)
+factory = DB(url=settings.db_url, echo=settings.db_echo)
