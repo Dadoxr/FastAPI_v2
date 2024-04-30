@@ -136,5 +136,4 @@ alembic/versions/
 
 # Poetry
 /poetry.lock
-/pyproject.toml
 n
