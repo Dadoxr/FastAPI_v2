@@ -132,7 +132,6 @@ dmypy.json
 
 # Alembic
 alembic.ini
-alembic/versions/
 
 # Poetry
 /poetry.lock
