@@ -4,4 +4,4 @@ __all__ = (
 )
 
 from .models import Base
-from .settings import settings
+from .config import settings
