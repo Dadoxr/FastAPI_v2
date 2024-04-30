@@ -12,5 +12,5 @@ from ..user.mixins import UserRelationMixin
 class Note(UserRelationMixin, Base):
     _user_back_populates = "notes"
 
-    title: Mapped[str] = mapped_column(String(50))
-    body: Mapped[str]
+    title: Mapped[str] = mapped_column(String(50), default="", server_default="")
+    body: Mapped[str] = mapped_column(default="", server_default="")
