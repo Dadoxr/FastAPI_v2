@@ -1,5 +1,6 @@
 import strawberry
 
+from ...core import factory
 from ..schemas import NoteOutput
 from ..services import NoteService
 
@@ -9,9 +10,11 @@ class Query:
 
     @strawberry.field
     async def get_all_notes() -> list[NoteOutput | None]:
-        return await NoteService.get_all()
+        async with factory.get_session() as session:
+            return await NoteService.get_all(session=session)
 
     @strawberry.field
-    async def get_note_by_id(note_id: int) -> NoteOutput | None:
-        return await NoteService.get_by_id(note_id=note_id)
+    async def get_note_by_id(note_id: int) -> NoteOutput:
+        async with factory.get_session() as session:
+            return await NoteService.get_by_id(session=session, note_id=note_id)
 

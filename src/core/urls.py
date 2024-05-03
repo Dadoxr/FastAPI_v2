@@ -3,11 +3,12 @@ from strawberry.tools import merge_types
 from strawberry import Schema
 from strawberry.fastapi import GraphQLRouter
 
-from ..user.REST import user_rest_router
-from ..note.REST import note_rest_router
+from ..user import REST as userREST
+from ..user import GraphQL as userGraphQL
 
-from ..user.GraphQL import Query as UserQuery
-from ..note.GraphQL import Query as NoteQuery
+from ..note import REST as noteREST
+from ..note import GraphQL as noteGraphQL
+
 
 
 class MainRouter:
@@ -27,14 +28,15 @@ main_router = MainRouter(rest=rest, graphql=graphql)
 
 
 # GraphQL include
-Query = merge_types("Query", (UserQuery, NoteQuery))
-schema = Schema(query=Query)
+Query = merge_types("Query", (userGraphQL.Query, noteGraphQL.Query))
+Mutation = merge_types("Mutation", (userGraphQL.Mutation, noteGraphQL.Mutation))
+schema = Schema(query=Query, mutation=Mutation)
 graphql_app = GraphQLRouter(schema=schema, path="/")
 main_router.graphql.include_router(router=graphql_app)
 
 
 # REST include
-app_routers = (user_rest_router, note_rest_router)
+app_routers = (userREST.router, noteREST.router)
 
 for router in app_routers:
     main_router.rest.include_router(router=router)

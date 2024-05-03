@@ -1,5 +1,7 @@
 __all__ = (
-    "Query"
+    "Query",
+    "Mutation"
 )
 
 from .query import Query
+from .mutation import Mutation

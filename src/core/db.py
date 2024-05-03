@@ -31,7 +31,7 @@ class DB:
         return scope
 
     @asynccontextmanager
-    async def get_session(self) -> AsyncGenerator[AsyncSession, None]:
+    async def get_session(self):
         session = self.get_scope_session()
         try:
             yield session
